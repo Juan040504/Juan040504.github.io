@@ -1,0 +1,283 @@
+﻿<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Videojuegos</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header .left {
+            flex: 1;
+        }
+
+        header .center {
+            flex: 2;
+            text-align: center;
+        }
+
+        header .right {
+            flex: 1;
+            text-align: right;
+        }
+
+        h1 {
+            margin: 0;
+            color: #4caf50; /* Cambia el color del texto a #4caf50 */
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(50% - 20px);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #buscar-juego {
+            background-color: #28a745; /* Verde */
+            color: #fff;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .resultado {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .resultado h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .resultado p {
+            margin-bottom: 5px;
+        }
+
+        header .left button {
+            color: #ffc107;  /* Color del texto */
+            background-color: #000; /* Color de fondo (negro) */
+            border: none; /* Quitamos el borde */
+            padding: 10px 20px; /* Ajustamos el padding para que el botón sea más grande */
+            border-radius: 4px; /* Añadimos bordes redondeados */
+            cursor: pointer;
+        }
+
+        /* Estilo para cuando se pasa el mouse sobre el botón */
+        header .left button:hover {
+            opacity: 0.8;
+        }
+
+        header .right a {
+            color: #ffc107;  /* Color del texto */
+            text-decoration: none; /* Quitamos el subrayado */
+        }
+
+        header .right a:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        footer.hidden {
+            transform: translateY(100%);
+        }
+
+        footer h3 {
+            margin: 0;
+            color: #ffc107;
+        }
+
+        footer a {
+            color: #ffc107;  /* Color del texto */
+            text-decoration: none; /* Quitamos el subrayado */
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left">
+            <button onclick="window.location.href='../index.html'">Inicio</button>
+        </div>
+        <div class="center">
+            <h1>Compra de Juegos</h1>
+        </div>
+        <div class="right">
+            <a href="Catalogo/index.html">Nuestro Catálogo</a>
+        </div>
+    </header>
+    <main>
+        <section id="busqueda">
+            <h2>Busca tu Videojuego</h2>
+            <form id="busqueda-form">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+                
+                <label for="anio">Año de Lanzamiento:</label>
+                <input type="number" id="anio" name="anio" min="1970" max="2024">
+                
+                <label for="genero">Género:</label>
+                <select id="genero" name="genero">
+                    <option value="">Todos</option>
+                    <option value="accion">Acción</option>
+                    <option value="aventura">Aventura</option>
+                    <option value="rpg">RPG</option>
+                    <option value="deportes">Deportes</option>
+                    <!-- Agrega más géneros según necesites -->
+                </select>
+                
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca">
+                
+                <button type="submit" id="buscar-juego">Buscar</button>
+            </form>
+        </section>
+        
+        <section id="resultados">
+            <h2>Resultados de la Búsqueda</h2>
+            <div id="lista-resultados">
+                <!-- Los resultados de la búsqueda se mostrarán aquí -->
+            </div>
+        </section>
+    </main>
+    
+    <footer id="footer">
+        <h3>Dudas o Problemas con la Página, Contáctanos a:</h3></br>
+        <a href="mailto:SrJuanito30@gmail.com" title="Soporte y Asistencia">Dudas y Sugerencias</a>
+    </footer>
+    
+    <script>
+        // JavaScript para manejar la búsqueda (esto se puede mejorar con una base de datos real)
+        document.getElementById('busqueda-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value.toLowerCase();
+            const anio = document.getElementById('anio').value;
+            const genero = document.getElementById('genero').value;
+            const marca = document.getElementById('marca').value.toLowerCase();
+            
+            // Ejemplo de lista de juegos, en una implementación real esto vendría de una base de datos
+            const juegos = [
+                { nombre: 'Juego 1', anio: 2022, genero: 'accion', marca: 'Marca A' },
+                { nombre: 'Juego 2', anio: 2020, genero: 'aventura', marca: 'Marca B' },
+                // Agrega más juegos según sea necesario
+            ];
+            
+            const resultados = juegos.filter(juego => {
+                return (!nombre || juego.nombre.toLowerCase().includes(nombre)) &&
+                       (!anio || juego.anio == anio) &&
+                       (!genero || juego.genero == genero) &&
+                       (!marca || juego.marca.toLowerCase().includes(marca));
+            });
+            
+            const listaResultados = document.getElementById('lista-resultados');
+            listaResultados.innerHTML = '';
+            
+            if (resultados.length > 0) {
+                resultados.forEach(juego => {
+                    const div = document.createElement('div');
+                    div.className = 'resultado';
+                    div.innerHTML = `<h3>${juego.nombre}</h3>
+                                     <p>Año: ${juego.anio}</p>
+                                     <p>Género: ${juego.genero}</p>
+                                     <p>Marca: ${juego.marca}</p>`;
+                    listaResultados.appendChild(div);
+                });
+            } else {
+                listaResultados.innerHTML = '<p>No se encontraron juegos que coincidan con los criterios de búsqueda.</p>';
+            }
+        });
+
+        // JavaScript para mostrar/ocultar el footer al hacer scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+            const footer = document.getElementById('footer');
+
+            if (st > lastScrollTop) {
+                // Scroll hacia abajo
+                footer.classList.add('hidden');
+            } else {
+                // Scroll hacia arriba
+                footer.classList.remove('hidden');
+            }
+            lastScrollTop = st <= 0 ? 0 : st; // Evita el valor negativo en scrollTop
+        }, false);
+    </script>
+</body>
+</html>

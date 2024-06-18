@@ -1,0 +1,232 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu Torneo de Videojuegos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        header .left {
+            flex: 1;
+        }
+        header .center {
+            flex: 2;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        main {
+            padding: 20px;
+            margin: 20px 10%;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        form {
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .torneo {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .torneo img {
+            max-width: 100px;
+            margin-right: 20px;
+            border-radius: 4px;
+        }
+        .torneo div {
+            flex-grow: 1;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            transition: transform 0.3s ease-in-out;
+            z-index: 100;
+        }
+        footer.hidden {
+            transform: translateY(100%);
+        }
+        footer h3 {
+            margin: 0;
+            color: #ffc107;
+        }
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        footer a:hover {
+            opacity: 0.8;
+        }
+        header .left button {
+            color: #ffc107;
+            background-color: #000;
+            border: none;
+            font-size: 20px;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        header .left button:hover {
+            opacity: 0.8;
+        }
+        header .rigth h1 {
+            color: #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left">
+            <button onclick="window.location.href='../index.html'">Inicio</button>
+        </div>
+        <div class="rigth">
+            <h1>Tournament Zone</h1>
+        </div>
+    </header>
+    
+    <main>
+        <form id="torneo-form">
+            <label for="juego">Juego:</label>
+            <input type="text" id="juego" name="juego" required><br><br>
+            
+            <label for="fecha">Fecha del Torneo:</label>
+            <input type="date" id="fecha" name="fecha" required><br><br>
+            
+            <label for="participantes">Número de Participantes:</label>
+            <input type="number" id="participantes" name="participantes" min="2" required><br><br>
+            
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" required><br><br>
+            
+            <label for="imagen">Imagen del Torneo:</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" required>
+            <br><br>
+
+            <button type="submit">Crear Torneo</button>
+        </form>
+        
+        <section id="torneos-creados">
+            <h2>Torneos Creados</h2>
+            <div id="lista-torneos">
+                <!-- Los torneos creados se mostrarán aquí -->
+            </div>
+        </section>
+    </main>
+    
+    <footer id="footer">
+        <h3>¿Dudas o problemas con la página? Contáctanos a:</h3></br>
+        <a href="mailto:SrJuanito30@gmail.com" title="Soporte y Asistencia">Dudas y Sugerencias</a>
+    </footer>
+    
+    <script>
+        document.getElementById('torneo-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const juego = document.getElementById('juego').value;
+            const fecha = document.getElementById('fecha').value;
+            const participantes = document.getElementById('participantes').value;
+            const ciudad = document.getElementById('ciudad').value;
+            const imagen = document.getElementById('imagen').files[0];
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const torneo = {
+                    juego: juego,
+                    fecha: fecha,
+                    participantes: participantes,
+                    ciudad: ciudad,
+                    imagen: event.target.result
+                };
+                
+                const listaTorneos = document.getElementById('lista-torneos');
+                const div = document.createElement('div');
+                div.className = 'torneo';
+                div.innerHTML = `<img src="${torneo.imagen}" alt="Imagen del torneo">
+                                 <div>
+                                     <h3>${torneo.juego}</h3>
+                                     <p>Fecha: ${torneo.fecha}</p>
+                                     <p>Participantes: ${torneo.participantes}</p>
+                                     <p>Ciudad: ${torneo.ciudad}</p>
+                                     <button class="participar-btn">Participar</button>
+                                 </div>`;
+                listaTorneos.appendChild(div);
+                
+                document.getElementById('torneo-form').reset();
+
+                const participarBtns = document.querySelectorAll('.participar-btn');
+                participarBtns.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const email = prompt("Ingresa tu dirección de correo electrónico para participar:");
+                        if (email) {
+                            alert(`¡Gracias por participar! Se ha registrado tu correo: ${email}`);
+                        }
+                    });
+                });
+            };
+            reader.readAsDataURL(imagen);
+        });
+
+        // JavaScript para mostrar/ocultar el footer al hacer scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let st = window.pageYOffset || document.documentElement.scrollTop;
+            const footer = document.getElementById('footer');
+
+            if (st > lastScrollTop) {
+                footer.classList.add('hidden');
+            } else {
+                footer.classList.remove('hidden');
+            }
+            lastScrollTop = st <= 0 ? 0 : st;
+        }, false);
+    </script>
+</body>
+</html>

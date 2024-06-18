@@ -1,0 +1,307 @@
+﻿<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedRun</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+        header .left {
+            flex: 1;
+        }
+
+        header .center {
+            flex: 2;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(50% - 20px);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none; /* Evita que el usuario redimensione el campo */
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #limpiar-formulario {
+            background-color: #007bff; /* Azul */
+            color: #fff;
+            margin-right: 10px; /* Separación del botón enviar */
+        }
+
+        #enviar-formulario {
+            background-color: #28a745; /* Verde */
+            color: #fff;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .speedrun {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            display: flex;
+            align-items: flex-start; /* Alinear contenido al inicio */
+        }
+
+        .speedrun h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .speedrun p {
+            margin-bottom: 5px;
+        }
+
+        .speedrun a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .speedrun a:hover {
+            text-decoration: underline;
+        }
+
+        .speedrun img {
+            border-radius: 4px;
+            margin-left: 20px;
+            flex: none; /* Evita que la imagen crezca */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            transition: transform 0.3s ease-in-out;
+            z-index: 100;
+        }
+
+        footer.hidden {
+            transform: translateY(100%);
+        }
+
+        footer h3 {
+            margin: 0;
+            color: #ffc107;
+        }
+
+        footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        header .left button {
+            color: #ffc107;
+            background-color: #000;
+            border: none;
+            font-size: 20px;
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        header .left button:hover {
+            opacity: 0.8;
+        }
+
+        header .right h1 {
+            color: #ff9800; /* Cambiar color a #ff9800 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left">
+            <button onclick="window.location.href='../index.html'">Inicio</button>
+        </div>
+        <div class="right">
+            <h1>SpeedRun Zone</h1>
+        </div>
+    </header>
+
+    <main>
+        <section id="subir-speedrun">
+            <h2>Presume Tu Marca</h2>
+            <form id="speedrun-form">
+                <label for="juego">Nombre del Juego:</label>
+                <input type="text" id="juego" name="juego" required>
+                
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecciona una categoría</option>
+                    <option value="Any%">Any%</option>
+                    <option value="Low%">Low%</option>
+                    <option value="100%">100%</option>
+                </select>
+                
+                <label for="tiempo">Tiempo (HH:MM:SS):</label>
+                <input type="text" id="tiempo" name="tiempo" required>
+                
+                <label for="video">Enlace al Video:</label>
+                <input type="url" id="video" name="video" required>
+                
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                
+                <label for="foto">Foto del Juego:</label>
+                <input type="file" id="foto" name="foto" accept="image/*" required>
+                
+                <label for="contacto">Correo Electrónico de Contacto:</label>
+                <input type="email" id="contacto" name="contacto" required>
+                
+                <button type="submit" id="enviar-formulario">Subir Speedrun</button>
+                <button type="button" id="limpiar-formulario">Limpiar Formulario</button>
+            </form>
+        </section>
+
+        <section id="speedruns-subidos">
+            <h2>Speedruns Subidos</h2>
+            <div id="lista-speedruns">
+                <!-- Los speedruns subidos se mostrarán aquí dinámicamente -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <h3>Dudas o Problemas con la Página, Contáctanos a:</h3> </br>
+        <a href="mailto:SrJuanito30@gmail.com" title="Soporte y Asistencia">Dudas y Sugerencias</a>
+    </footer>
+
+    <script>
+        document.getElementById('speedrun-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const juego = document.getElementById('juego').value;
+            const categoria = document.getElementById('categoria').value;
+            const tiempo = document.getElementById('tiempo').value;
+            const video = document.getElementById('video').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const contacto = document.getElementById('contacto').value;
+            const foto = document.getElementById('foto').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const speedrun = {
+                    juego: juego,
+                    categoria: categoria,
+                    tiempo: tiempo,
+                    video: video,
+                    descripcion: descripcion,
+                    contacto: contacto,
+                    foto: event.target.result
+                };
+                
+                const listaSpeedruns = document.getElementById('lista-speedruns');
+                const div = document.createElement('div');
+                div.className = 'speedrun';
+                div.innerHTML = `<div style="flex: 1;">
+                                    <h3>${speedrun.juego} - ${speedrun.categoria}</h3>
+                                    <p>Tiempo: ${speedrun.tiempo}</p>
+                                    <p>Descripción: ${speedrun.descripcion}</p>
+                                    <p>Video: <a href="${speedrun.video}" target="_blank">Ver Video</a></p>
+                                    <p>Contacto: <a href="mailto:${speedrun.contacto}">${speedrun.contacto}</a></p>
+                                 </div>
+                                 <img src="${speedrun.foto}" alt="Imagen del juego" style="max-width: 100%;">`;
+                listaSpeedruns.appendChild(div);
+                
+                document.getElementById('speedrun-form').reset();
+            };
+            reader.readAsDataURL(foto);
+        });
+
+        document.getElementById('limpiar-formulario').addEventListener('click', function() {
+            document.getElementById('speedrun-form').reset();
+        });
+
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const footer = document.getElementById('footer');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                footer.classList.add('hidden');
+            } else {
+                footer.classList.remove('hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

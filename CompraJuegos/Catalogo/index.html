@@ -1,0 +1,432 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Digital - Catálogo</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        header a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header .left {
+            flex: 0 1 200px;
+        }
+
+        header .left button {
+            color: #ffc107;
+            background-color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        header .left button:hover {
+            opacity: 0.8;
+        }
+
+        header .right {
+            text-align: right;
+            flex: 0 1 200px;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff; /* Azul */
+            color: #fff;
+        }
+
+        td img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        td .link-cancion {
+            text-align: center;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .btn-comprar {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .btn-comprar:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilos del formulario emergente */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-field input,
+        .form-field select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-field input[type="submit"] {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: auto;
+        }
+
+        .form-field input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+
+        #otroBancoDiv {
+            display: none;
+        }
+
+        /* Estilos del folio de compra */
+        #folioCompra {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #folioCompra input {
+            width: auto;
+            display: inline-block;
+        }
+
+        #folioCompra button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #folioCompra button:hover {
+            opacity: 0.8;
+        }
+        #folioCompra button:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="left">
+        <button onclick="window.location.href='../index.html'">Atras</button>
+    </div>
+    <h1>Tienda Digital</h1>
+    <div class="right">
+    </div>
+</header>
+
+<main>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Plataforma</th>
+                <th>Precio</th>
+                <th>Comprar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="TLOZ.jpg" alt="The Legend Of Zelda">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=sjxLF4IYnJc" target="_blank">Ver Trailer</a>
+                </td>
+                <td>The Legend Of Zelda: Tears Of The Kingdom</td>
+                <td>NINTENDO</td>
+                <td>$1,500.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="fifas.jpg" alt="Ea Sports Fc 24">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=L30zvMbVJlM" target="_blank">Ver Trailer</a>
+                </td>
+                <td>Ea Sports Fc 24</td>
+                <td>SONY (PLAYSTATION)</td>
+                <td>$750.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="hl.jpg" alt="HOWARTS LEGACY">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=BtyBjOW8sGY" target="_blank">Ver Trailer</a>
+                </td>
+                <td>HOWARTS LEGACY</td>
+                <td>PC (VIA STEAM)</td>
+                <td>$716.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="GTA.jpg" alt="GTA V">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=hvoD7ehZPcM" target="_blank">Ver Trailer</a>
+                </td>
+                <td>GTA V</td>
+                <td>PS5, XBOX, STEAM</td>
+                <td>$500.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="MW.jpg" alt="SUPER MARIO BROS WONDER">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=XvQNlGKNC6o" target="_blank">Ver Trailer</a>
+                </td>
+                <td>SUPER MARIO BROS WONDER</td>
+                <td>NINTENDO</td>
+                <td>$800.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="MK.jpg" alt="MARIO KART 8 DELUXE">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=tKlRN2YpxRE" target="_blank">Ver Trailer</a>
+                </td>
+                <td>MARIO KART 8 DELUXE</td>
+                <td>NINTENDO</td>
+                <td>$900.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="SP2.jpg" alt="SPIDER-MAN 2">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=cXSpEmPmbfc" target="_blank">Ver Trailer</a>
+                </td>
+                <td>SPIDER-MAN 2</td>
+                <td>PLAYSTATION 5</td>
+                <td>$1300.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="T8.jpg" alt="TEKKEN 8">
+                    <a class="link-cancion" href="https://www.youtube.com/watch?v=603dCoqtoeE" target="_blank">Ver Trailer</a>
+                </td>
+                <td>TEKKEN 8</td>
+                <td>PLAYSTATION 5</td>
+                <td>$800.00</td>
+                <td><button class="btn-comprar" onclick="openModal()">Comprar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<div id="modalCompra" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form id="compraForm" onsubmit="return realizarCompra()">
+            <div class="form-field">
+                <label for="tarjeta">Numero de Tarjeta:</label>
+                <input type="text" id="tarjeta" name="tarjeta" maxlength="16" pattern="\d{16}" required>
+            </div>
+            <div class="form-field">
+                <label for="banco">Banco:</label>
+                <select id="banco" name="banco" onchange="mostrarOtroBanco()" required>
+                    <option value="">Seleccione su banco</option>
+                    <option value="BBVA">BBVA</option>
+                    <option value="CityBanamex">CityBanamex</option>
+                    <option value="Santander">Santander</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-field" id="otroBancoDiv">
+                <label for="otroBanco">Especifique su Banco:</label>
+                <input type="text" id="otroBanco" name="otroBanco">
+            </div>
+            <div class="form-field">
+                <label for="cvc">CVC:</label>
+                <input type="text" id="cvc" name="cvc" maxlength="3" pattern="\d{3}" required>
+            </div>
+            <div class="form-field">
+                <label for="nombre">A nombre de:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-field">
+                <label for="email">Correo Electronico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field">
+                <input type="submit" value="Realizar Compra">
+            </div>
+        </form>
+        <div id="folioCompra">
+            <label for="folio">Su Folio de Compra Es:</label>
+            <input type="text" id="folio" readonly>
+            <button onclick="copiarFolio()">Copiar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('modalCompra').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('modalCompra').style.display = "none";
+    }
+
+    function mostrarOtroBanco() {
+        var banco = document.getElementById('banco').value;
+        var otroBancoDiv = document.getElementById('otroBancoDiv');
+        if (banco === 'Otro') {
+            otroBancoDiv.style.display = "block";
+        } else {
+            otroBancoDiv.style.display = "none";
+        }
+    }
+
+    window.onclick = function(event) {
+        var modal = document.getElementById('modalCompra');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function realizarCompra() {
+        // Evitar el envío del formulario
+        event.preventDefault();
+
+        // Generar un número aleatorio de 8 dígitos
+        var folio = Math.floor(10000000 + Math.random() * 90000000);
+
+        // Mostrar el folio en la caja de texto
+        document.getElementById('folio').value = folio;
+        document.getElementById('folioCompra').style.display = "block";
+
+        // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor si es necesario
+
+        return false;
+    }
+
+    function copiarFolio() {
+        var folio = document.getElementById('folio');
+        folio.select();
+        folio.setSelectionRange(0, 99999); // Para dispositivos móviles
+
+        // Copiar el texto al portapapeles
+        document.execCommand("copy");
+
+        // Mostrar un mensaje temporal de confirmación (opcional)
+        alert("Folio copiado: " + folio.value);
+    }
+</script>
+
+</body>
+</html>
